@@ -6,12 +6,22 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 export default class AuthForm extends Component {
   // state = {
   //   email: '',
   //   password: '',
   // };
+
+  goToHome() {
+    Actions.home();
+  }
+
+  goToLogin() {
+    Actions.login();
+  }
+
   render() {
     const {type} = this.props;
     return (
@@ -31,7 +41,11 @@ export default class AuthForm extends Component {
         />
 
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>{type}</Text>
+          <Text
+            style={styles.buttonText}
+            onPress={type === 'Login' ? this.goToHome : this.goToLogin}>
+            {type}
+          </Text>
         </TouchableOpacity>
       </View>
     );
